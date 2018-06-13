@@ -3,7 +3,8 @@ The project was created for Android Team at zenoti to Automate their Application
 
 This project requires XAMPP/WAMP to be installed first on your system to store the JSON's and retrieve them.
 
-Step 1: Install XAMPP on your machine in C:\ drive (or at any place)  
+
+  Step 1: Install XAMPP on your machine in C:\ drive (or at any place),Download from Xampp website:--https://www.apachefriends.org/download.html   
   
 step 2: Then create a new folder called 'project' in c:\xampp\htdocs\
   
