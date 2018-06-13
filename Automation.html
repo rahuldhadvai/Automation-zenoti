@@ -1,0 +1,376 @@
+<html>
+<head>
+<title>Automation Zenoti</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<link rel="shortcut icon" type="image/x-icon" href="C:\xampp\htdocs\project\favicon.ico" />
+
+<style>
+
+
+
+
+ ul {
+    list-style-type: none;
+    
+    padding: 0.5%;
+    overflow: hidden;
+    background-color: white;
+	margin-left:-2%;
+	margin-top:-0.7%;
+	margin-right:-5%;
+}
+
+li {
+    float: left;
+	padding-left:70px;
+}
+
+li a {
+    cursor: pointer;
+    display: block;
+    color: orange;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    cursor: pointer;
+    background-color: orange;
+	
+} 
+
+#emulator_div{
+    position: fixed;
+	top :77;
+    right: 35;
+    width: 310px;
+	height:500px;
+	margin-bottom:20;
+    border: 1px  solid;
+}
+
+/* #text_div,#colors_div,#fonts_div,#properties_div,#images_div{  
+
+    height: 1000px;
+    width: 40%;
+
+	margin-left:30;
+    border-style:solid;
+
+} */
+
+
+
+</style>
+</head>
+
+<body>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" 
+crossorigin="anonymous"></script>
+<script src="content_JS.js" ></script>
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow" style="height:60">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">ZENOTI</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" onclick="generateJSON()" style="color:white">Generate JSON</a>
+	  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://localhost:8080/project/BrowseJsons.html" target="_blank">View All JSON Files</a>
+    </nav>
+
+</br></br></br>
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Text</h2>
+</div>
+<div class="card-body">
+</br>
+<div id="text_div" class="panel">
+</br>
+
+<label >App name</label>
+<input type="text" id="appname_edited" style="width:300"class="form-control" onblur="genericFunc(this,'app_name')"> </input> 
+</br>
+<label for="Appname">Tag Line</label></br>
+<input type="text" id="tagLine_edited" style="width:300"class="form-control" onblur="genericFunc(this,'heading')" > </input>
+</br>
+<label >Center Label</label>
+<input type="text" id="centerLabel_edited" style="width:300"class="form-control" > </input>
+</br>
+<label >Add-On Label</label>
+ <input type="text" id="addOnLabel_edited" style="width:300"class="form-control"></input>
+</br>
+<label >Cancellation Policy</label>
+</br>
+<input type="text" id="cancellationPolicy_edited" style="width:300"class="form-control"></input>
+</br>
+<label >About Us</label>
+</br>
+<input type="text" id="aboutUs_edited" style="width:300"class="form-control" placeholder="URL"></input>
+</br></br>
+
+</div>
+</div>
+</div>
+</br>
+
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Colours</h2>
+</div>
+<div class="card-body">
+</br>
+<div id="colors_div" class="panel"> 
+
+
+&nbsp &nbsp &nbsp  <label> Choose Navigation Background Colour :</label> <input type="color" id="nav_bg_color" onchange="apply_header_color_changes()"></input>
+   or    Enter the Hex Code: <input type="text" id="hex_nav_bg"  onblur="apply_header_color_changes()"></input>
+   </br></br>
+   
+&nbsp &nbsp &nbsp   Choose Navigation Foreground Colour   : <input type="color" id="nav_foreground_color" ></input>
+   or    Enter the Hex Code: <input type="text" id="hex_nav_fg"></input>
+</br></br>
+
+&nbsp &nbsp &nbsp   Choose Button Background Colour : <input type="color" id="button_bg_color" onchange="applyButton_bg_colourChanges()"></input>
+   or    Enter the Hex Code: <input type="text" id="hex_btn_bg" onblur="applyButton_bg_colourChanges()"></input>
+   </br></br>
+   
+&nbsp &nbsp &nbsp   Choose Button Foreground Colour   : <input type="color" id="button_foreground_color" onchange="applyButton_fg_colourChanges()"></input>
+   or    Enter the Hex Code: <input type="text" id="hex_btn_fg" onblur="applyButton_fg_colourChanges()"></input>
+</br></br>
+&nbsp &nbsp &nbsp   Choose Link Colour : <input type="color" id="link_color" ></input>
+   or    Enter the Hex Code: <input type="text" id="hex_link_color" ></input>
+   </br></br>
+   </div>
+</div>
+</div>
+</br>
+
+
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Properties</h2>
+</div>
+<div class="card-body">
+</br>
+<div id="properties_div" class="panel">
+<h4>Apple Pay</h4>
+<div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="apple_pay_yes" name="card_feature" type="radio" value="enable"class="custom-control-input" onclick="payment_checked(this.value)" checked required="">
+                <label class="custom-control-label" for="apple_pay_yes">Enable</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="apple_pay_no" name="card_feature" type="radio" value="disable" class="custom-control-input" onclick="payment_checked(this.value)" required="">
+                <label class="custom-control-label" for="apple_pay_no">Disable</label>
+              </div>
+              
+            </div>
+			
+<h4>Gender Selection</h4>
+<div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="gender_selection_yes" name="gender_feature" type="radio" value="enable" class="custom-control-input"  checked required="">
+                <label class="custom-control-label" for="gender_selection_yes">Enable</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="gender_selection_no" name="gender_feature" type="radio" value="disable" class="custom-control-input"  required="">
+                <label class="custom-control-label" for="gender_selection_no">Disable</label>
+              </div>
+              
+            </div>
+<h4>Mix Panel</h4>
+<div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="mixpanel_yes" name="mixpanel_feature" type="radio" value="enable" class="custom-control-input"  checked required="">
+                <label class="custom-control-label" for="mixpanel_yes">Enable</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="mixpanel_no" name="mixpanel_feature" type="radio" value="disable" class="custom-control-input"  required="">
+                <label class="custom-control-label" for="mixpanel_no">Disable</label>
+              </div>
+              
+            </div>
+<h4>ADA</h4>
+<div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="enable_ada_yes" name="ada_feature" type="radio" value="enable"class="custom-control-input"  checked required="">
+                <label class="custom-control-label" for="enable_ada_yes">Enable</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="enable_ada_no" name="ada_feature" type="radio" value="disable" class="custom-control-input"  required="">
+                <label class="custom-control-label" for="enable_ada_no">Disable</label>
+              </div>
+              
+            </div>		
+<h4>Cancel Appointment</h4>
+<div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="enable_cancel_appt_yes" name="cancel_appt_feature" type="radio" value="enable"class="custom-control-input"  checked required="">
+                <label class="custom-control-label" for="enable_cancel_appt_yes">Enable</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="enable_cancel_appt_no" name="cancel_appt_feature" type="radio" value="disable" class="custom-control-input"  required="">
+                <label class="custom-control-label" for="enable_cancel_appt_no">Disable</label>
+              </div>
+              
+            </div>	
+<h4>Ignore OTP</h4>
+<div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="ignore_otp_yes" name="Ignore_otp_feature" type="radio" value="enable"class="custom-control-input"  checked required="">
+                <label class="custom-control-label" for="ignore_otp_yes">Yes</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="ignore_otp_no" name="Ignore_otp_feature" type="radio" value="disable" class="custom-control-input"  required="">
+                <label class="custom-control-label" for="ignore_otp_no">No</label>
+              </div>
+              
+            </div>			
+
+</div>
+</div>
+</div>
+</br>
+
+
+
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Images</h2>
+</div>
+<div class="card-body">
+<div id="images_div" class="my-3 p-3 bg-white rounded box-shadow">
+<label> Logo Icon </label> <input type="text" id="logo_icon" size="55" style="width:400"class="form-control" placeholder="logo Url"></br>
+
+<label>Login Image </label> <input type="text" id="login_icon" size="55" style="width:400"class="form-control" placeholder="login logo Url"></br>
+
+<label> Navigation Drawer Icon</label> <input type="text" id="nav_drawer_icon" size="55" style="width:400"class="form-control" placeholder="navigation logo Url"></br>
+
+<label> Launcher Icon</label> <input type="text"  id="launcher_icons" size="55" style="width:400"class="form-control" placeholder="launcher icon Url">
+
+</div><!--images div close -->
+</div>
+</div>
+</br>
+
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Font</h2>
+</div>
+<div class="card-body">
+</br>
+<div id="fonts_div" class="panel">
+
+&nbsp &nbsp &nbsp  Choose app name Font :                      
+<select id = "font_option" onchange="appname_font_edit(this);" >
+  <option>Georgia</option>
+  <option>Palatino Linotype</option>
+  <option>Book Antiqua</option>
+  <option>Times New Roman</option>
+  <option>Arial</option>
+  <option>Helvetica</option>
+  <option>Arial Black</option>
+  <option>Impact</option>
+  <option>Lucida Sans Unicode</option>
+  <option>Tahoma</option>
+  <option>Verdana</option>
+  <option>Courier New</option>
+  <option>Lucida Console</option>
+</select> 
+</br></br>
+</div>
+</div>
+</div>
+</br>
+
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Environment Configuration</h2>
+</div>
+<div class="card-body">
+</br>
+<div id="env_config" class="panel">
+
+<label> Base URL </label> <input type="text" id="base_url" size="55" style="width:300"class="form-control" ></br>
+
+<label> Client ID </label> <input type="text" id="client_id" size="55" style="width:300"class="form-control" ></br>
+
+<label> Access Key</label> <input type="text" id="access_key" size="55" style="width:300"class="form-control" ></br>
+
+<label> Organization ID</label> <input type="text" id="organization_id" id="launcher_icons" size="55" style="width:300"class="form-control" ></br>
+
+<label> Login App ID </label> <input type="text" id="login_app_id" size="55" style="width:300"class="form-control" ></br>
+
+<label> Login App Secret </label> <input type="text" id="login_app_secret" size="55" style="width:300"class="form-control" ></br>
+
+<label> Web URL</label> <input type="text" id="web_url" size="55" style="width:300"class="form-control" ></br>
+
+</div>
+</div>
+</div>
+</br>
+
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Access Keys</h2>
+</div>
+<div class="card-body">
+</br>
+<div id="env_config" class="panel">
+
+<label> Google Maps Key </label> <input type="text" id="google_maps_keys" size="55" style="width:300"class="form-control" ></br>
+
+<label> Localytics Key </label> <input type="text" id="localytics_key" size="55" style="width:300"class="form-control" ></br>
+
+<label> New Relic Key</label> <input type="text" id="newrelic_key" size="55" style="width:300"class="form-control" ></br>
+
+<label> Zenoti Mix Panel Key</label> <input type="text" id="zenoti_mixpanel_key" id="launcher_icons" size="55" style="width:300"class="form-control" ></br>
+
+<label> Mix Panel key </label> <input type="text" id="mixpanel_key" size="55" style="width:300"class="form-control" ></br>
+
+</div>
+</div>
+</div>
+</br>
+
+<div class="card" style="width:1000">
+<div class="card-header">
+<h2>Meta Data</h2>
+</div>
+<div class="card-body">
+</br>
+<div id="meta_data_div" class="panel">
+
+<label> App version code </label> <input type="text" id="app_versioncode" size="55" style="width:300"class="form-control" ></br>
+
+<label> App Version Name </label> <input type="text" id="app_versionname" size="55" style="width:300"class="form-control" ></br>
+
+<label> App ID</label> <input type="text" id="appId" size="55" style="width:300"class="form-control" ></br>
+
+<label> Mix Panel Key</label> <input type="text" id="mixpanel_key" id="launcher_icons" size="55" style="width:300"class="form-control" ></br>
+
+<label> Google key </label> <input type="text" id="google_key" size="55" style="width:300"class="form-control" ></br>
+
+</div>
+
+</div>
+</div>
+</br>
+
+<div id="emulator_div" style="border-radius:10px" >
+<div id="header_div" style="background-color:black;border-radius:8px 8px 0 0; height:45;width:310;overflow:hidden;position:relative">
+<center><h4 id="app_name" style="color:white">App name</h4></center>
+<img src="http://localhost:8080/project/nav_drawer.png" alt="img" style=";height:30;width:30;position:absolute;left:9;top:9"></img>
+</div>
+
+<h4 id="heading" style="margin-left:10">Headings</h4> 
+<p id="para" style="padding:10">Technology may be the cornerstone of what we do, but our unwavering commitment to providing amazing customer support is who we are. That commitment to service, along with our knowledge of your business and expertise in building enterprise technology, is your assurance that our software will never be a failure point for you.</p>
+<input type="button" value="proceed to payment" id="payment_button" style="margin-left:80;margin-top:30;height:30;border:none"></input>
+
+
+</div><!-- emulator div -->
+
+</body>
+</html>
