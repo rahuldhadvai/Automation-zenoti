@@ -18,7 +18,10 @@ echo "Connected to Database successfully";
 
 $table = "create table app_jsons(
 	
-	app_name varchar(30) NOT NULL PRIMARY KEY,
+	id int(11) AUTO_INCREMENT PRIMARY KEY,
+	app_name varchar(30) NOT NULL,
+	version int(5),
+	Last_Modified varchar(20),
 	json_string varchar(10000)
 )";
 
