@@ -1,6 +1,8 @@
 # Automation-zenoti
 The project was created for Android Team at zenoti to Automate their Application Build Process(App development) 
 
+The developed website takes the input from the client  about the features of app (like  in-app features, logos, colours, properties etc) and shows a simulation of how the app would look like.  Finally, it  combines the input data into a JSON file which is used to build an app for that client.  
+
 This project requires XAMPP/WAMP to be installed first on your system to store the JSON's and retrieve them.
 
 
